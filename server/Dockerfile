@@ -1,7 +1,7 @@
 #staage first
 FROM node:18 AS builder  
 
-WORKDIR /app 
+WORKDIR /bapp 
 
 COPY package*.json ./
 
@@ -11,9 +11,9 @@ FROM node:18-alpine AS deployer
 
 COPY . . 
 
-WORKDIR /app 
+WORKDIR /bapp 
 
-COPY --from=builder /app ./
+COPY --from=builder /bapp ./
 
 EXPOSE 5000 
 
