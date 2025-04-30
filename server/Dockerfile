@@ -1,20 +1,20 @@
-#staage first
-FROM node:18 AS builder  
+# Stage 1: Build
+FROM node:18 AS builder
 
-WORKDIR /bapp 
+WORKDIR /bapp
 
 COPY package*.json ./
+RUN npm install
 
-RUN npm install 
-#staage second
+COPY . .  
+
+# Stage 2: Deploy
 FROM node:18-alpine AS deployer
 
-COPY . . 
-
-WORKDIR /bapp 
+WORKDIR /bapp
 
 COPY --from=builder /bapp ./
 
-EXPOSE 5000 
+EXPOSE 5000
 
-CMD [ "node","/bapp/index.js" ]
+CMD ["node", "index.js"]
