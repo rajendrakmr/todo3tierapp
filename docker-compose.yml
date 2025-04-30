@@ -29,12 +29,12 @@ services:
       - mysql
     networks:
       - todo-network
-  fronted:
+  client:
     build: 
-      context: ./fronted
+      context: ./client
       args: 
         REACT_APP_SERVER_URL: http://server:5000
-    container_name: fronted 
+    container_name: client 
     ports:
       - 3000:3000 
     depends_on: 
