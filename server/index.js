@@ -7,10 +7,10 @@ app.use(cors());
 app.use(express.json());
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root', // 👈 Replace with your actual MySQL password
-    database: 'todo_db',
+    host: process.env.MYSQL_HOST || 'mysql',  // Default to 'mysql' if not set
+    user: process.env.MYSQL_USER || 'root',
+    password: process.env.MYSQL_PASSWORD || 'root',
+    database: process.env.MYSQL_DATABASE || 'todo_db',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
