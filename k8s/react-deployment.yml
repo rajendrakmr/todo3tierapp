@@ -4,7 +4,7 @@ metadata:
   name: react-fronted
   namespace: todo3tier
   labels:
-    app: reactfronted
+    app: react-fronted
 spec:
   replicas: 3
   selector:
@@ -37,7 +37,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: reactfronted
+    app: react-fronted
   ports:
     - protocol: TCP 
       port: 80
