@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-deployent
+  name: react-fronted
   namespace: todo3tier
   labels:
     app: reactfronted

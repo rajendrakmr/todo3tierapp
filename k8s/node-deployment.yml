@@ -1,7 +1,7 @@
 kind: Deployment 
 apiVersion: apps/v1
 metadata:
-  name: nodeserver
+  name: nodebackend
   namespace: todo3tier
   labels:
     app: nodeserver
