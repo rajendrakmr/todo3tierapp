@@ -9,11 +9,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: react-deployent
+      app: react-fronted
   template:
     metadata:
       labels:
-        app: react-deployent
+        app: react-fronted
     spec:
       containers:
         - name: react-fronted

@@ -9,10 +9,10 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nodeserver 
+      app: nodebackend 
   template:
     metadata:
-      name: nodeserver
+      name: nodebackend
     spec:
       containers:
         - name: nodebackend 
