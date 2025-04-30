@@ -17,4 +17,4 @@ COPY --from=builder /bapp ./
 
 EXPOSE 5000 
 
-CMD [ "node","index.js" ]
+CMD [ "node","/bapp/index.js" ]
