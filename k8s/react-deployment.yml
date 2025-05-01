@@ -4,19 +4,19 @@ metadata:
   name: react-fronted
   namespace: todo3tier
   labels:
-    app: react-fronted
+    app: client
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: react-fronted
+      app: client
   template:
     metadata:
       labels:
-        app: react-fronted
+        app: client
     spec:
       containers:
-        - name: react-fronted
+        - name: webclient
           image: rk0617/todo3tier-fronted:latest 
           ports:
           - containerPort: 80
@@ -37,7 +37,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: react-fronted
+    app: client
   ports:
     - protocol: TCP 
       port: 80

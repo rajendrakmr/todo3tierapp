@@ -4,18 +4,18 @@ metadata:
   name: nodebackend
   namespace: todo3tier
   labels:
-    app: nodebackend
+    app: server
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nodebackend 
+      app: server 
   template:
     metadata:
-      name: nodebackend
+      name: server
     spec:
       containers:
-        - name: nodebackend 
+        - name: backendserver 
           image: rk0617/todo3tier-backend:latest
           ports:
             - containerPort: 5000 
@@ -57,7 +57,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: nodebackend
+    app: server
   ports:
     - protocol: TCP 
       port: 5000
@@ -67,9 +67,4 @@ spec:
 
 
 
-
-
-      #      MYSQL_HOST: mysql
-      # MYSQL_USER: root
-      # MYSQL_PASSWORD: root
-      # MYSQL_DATABASE: todo
+ 

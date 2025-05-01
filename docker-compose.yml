@@ -33,9 +33,9 @@ services:
     build: 
       context: ./client
       args: 
-        REACT_APP_SERVER_URL: http://54.246.16.110:5000
+        REACT_APP_SERVER_URL: http://34.254.182.255:5000
     environment:
-      REACT_APP_SERVER_URL: http://54.246.16.110:5000
+      REACT_APP_SERVER_URL: http://34.254.182.255:5000
     container_name: client 
     ports:
       - 80:80 
