@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -10,33 +11,39 @@ function App() {
   const apiUrl = process.env.REACT_APP_API_URL; // Access the environment variable
 
   useEffect(() => {
-    console.log("apiUrlapiUrlapiUrl",apiUrl)
-    fetch(`${apiUrl}/todos`)
-      .then(res => res.json())
-      .then(data => setTodos(data));
+    console.log("apiUrlapiUrlapiUrl", apiUrl);
+    axios.get(`${apiUrl}/todos`)
+      .then(res => setTodos(res.data))
+      .catch(err => console.error("Error fetching todos:", err));
   }, [apiUrl]);
 
   const addTodo = async () => {
     if (!text.trim()) return;
-    const res = await fetch(`${apiUrl}/todos`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text })
-    });
-    const newTodo = await res.json();
-    setTodos([...todos, newTodo]);
-    setText('');
+    try {
+      const res = await axios.post(`${apiUrl}/todos`, { text });
+      setTodos([...todos, res.data]);
+      setText('');
+    } catch (err) {
+      console.error("Error adding todo:", err);
+    }
   };
 
   const toggleTodo = async (id) => {
-    const res = await fetch(`${apiUrl}/todos/${id}`, { method: 'PUT' });
-    const updated = await res.json();
-    setTodos(todos.map(t => t.id === id ? updated : t));
+    try {
+      const res = await axios.put(`${apiUrl}/todos/${id}`);
+      setTodos(todos.map(t => t.id === id ? res.data : t));
+    } catch (err) {
+      console.error("Error toggling todo:", err);
+    }
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`${apiUrl}/todos/${id}`, { method: 'DELETE' });
-    setTodos(todos.filter(t => t.id !== id));
+    try {
+      await axios.delete(`${apiUrl}/todos/${id}`);
+      setTodos(todos.filter(t => t.id !== id));
+    } catch (err) {
+      console.error("Error deleting todo:", err);
+    }
   };
 
   const startEdit = (id, currentText) => {
@@ -46,17 +53,17 @@ function App() {
 
   const saveEdit = async (id) => {
     if (!editText.trim()) return;
-    await fetch(`${apiUrl}/todos/${id}/edit`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: editText })
-    });
-    const updatedTodos = todos.map(todo =>
-      todo.id === id ? { ...todo, text: editText } : todo
-    );
-    setTodos(updatedTodos);
-    setEditingId(null);
-    setEditText('');
+    try {
+      const res = await axios.put(`${apiUrl}/todos/${id}/edit`, { text: editText });
+      const updatedTodos = todos.map(todo =>
+        todo.id === id ? { ...todo, text: editText } : todo
+      );
+      setTodos(updatedTodos);
+      setEditingId(null);
+      setEditText('');
+    } catch (err) {
+      console.error("Error saving edit:", err);
+    }
   };
 
   return (
