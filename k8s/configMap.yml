@@ -6,4 +6,5 @@ metadata:
 data: 
   MYSQL_USER: root 
   MYSQL_DATABASE: todo
-  MYSQL_HOST: mysql-headless.todo3tier.svc.cluster.local:3306
+  MYSQL_HOST: mysql-headless.todo3tier.svc.cluster.local
+

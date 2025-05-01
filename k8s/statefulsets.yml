@@ -4,7 +4,7 @@ metadata:
   name: mysqlbackend
   namespace: todo3tier
   labels:
-    app: mysqlbackend
+    app: mysql
 spec:
   selector:
     matchLabels:
@@ -51,7 +51,7 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    app: mysqlbackend
+    app: mysql
   ports:
     - protocol: TCP 
       port: 3306
