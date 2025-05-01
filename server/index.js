@@ -5,7 +5,6 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.options('*', cors()); // allow preflight for all routes
 
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST || 'mysql',  // Default to 'mysql' if not set
