@@ -12,7 +12,9 @@ spec:
       app: server 
   template:
     metadata:
-      name: server
+      metadata:
+      labels:
+        app: server 
     spec:
       containers:
         - name: backendserver 
